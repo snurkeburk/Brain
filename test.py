@@ -2,7 +2,8 @@
 import random
 import uuid
 import datetime
-
+import os 
+import time
 #DONE: Make these into Objects instead of seperate arrays
 #DONE: Change the date to random instead of date.now() - 
 #TODO: Add more names
@@ -48,11 +49,47 @@ def genDate():
     format = formats[random.randint(1,len(formats)-1)]
     return datetime.datetime(year,month,day,hour,minute,seconds).strftime("%"+format)
 
+# Skapa lista1
+# Duplicera list1 till lista2
+# Avgör vad som ska randomizas
+# Printa lista list1[i] :tab:tab: lista2[i]
+leftList = []
+rightList = []
+rows = []
+def createLists(n):
+    buffer =  40
+    termWidth = os.get_terminal_size().columns - buffer
+    row = ""
+    for i in range(n):
+        leftList.append(Person(genName(),genName(),genUuid(),genDate()))
+        #leftList.append(Person("isak","Anderson","123","2024"))
+    
+    space = " "
+#    for i in range(len(leftList)):
+        
+       # row = (str(leftList[i]) + space + str(rightList[i]))
+
+           # while len(row) < termWidth:
+           #     space+=space
+           #     row = (str(leftList[i]) + space + str(rightList[i]))
+        #rows.append(row)
+
+    #for i in range(len(rows)):
+    #print(rows[i])
+
+
+def draw():
+    os.system('clear')
+    rightList = leftList
+    for i in range(len(leftList)):
+        print('{:>20}'.format(str(rightList[i])))
+
 
 def main():
-    for i in range(49):
-        #print(Person(genName(), genName(),genUuid(),genDate()))
-        
+    createLists(20)
+    while True:
+        draw()
+
 
 if __name__ == '__main__':
     main()
